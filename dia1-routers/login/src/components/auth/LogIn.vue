@@ -33,10 +33,10 @@
         Submit
       </button>
     </form>
-
+<!-- 
     <pre>
       {{ login }}
-    </pre>
+    </pre> -->
   </div>
 </template>
 
@@ -56,22 +56,31 @@ export default {
   methods: {
     async loginUser() {
       try {
-        let response = await this.$http.post("/api/usuario/login", this.login);
-        console.log(response);
-        let token = response.data.tokenReturn;
+        //  let response = await this.$http.post("/api/usuario/login", this.login);
+        let response = await this.$http.post("/api/auth/signin", this.login);
+        //  let token = response.data.tokenReturn;
+        let token = response.data.accessToken;
         let user = response.data.user;
-
-        localStorage.setItem("jwt", token);
-        localStorage.setItem("user", JSON.stringify(user));
+        console.log(user);
         if (token) {
+          localStorage.setItem("jwt", token);
+          localStorage.setItem("user", JSON.stringify(user));
           swal('Ingreso Exitoso!','','success');
           this.$router.push("/home");
         } else {
-          console.log(err.response);
+          console.log("Error Token");
         }
-      } catch {
-        swal('Ooopssss!','Something went wrong!', "error");
-        console.log(err.response);
+        
+      } catch (err){
+        let status = err.response.status;
+        if(status === 404){
+          swal('Ooopssss!','Usuario no encontrado', "error");  
+        }else if(status === 401){
+          swal('Ooopssss!','Contraseña inválida!', "error");
+        }else{
+          swal('Ooopssss!','Something went wrong!', "error");
+        }
+        // console.log(err.response);
       }
     },
   },

@@ -1,8 +1,10 @@
+const { DataTypes } = require('sequelize');
+
 module.exports = (sequelize, type)=>{
     return sequelize.define('user', {
         // Model attributes are defined here
         id:{
-            type: type.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey : true,
             allowNull: false,
             autoIncrement: true
