@@ -1,19 +1,43 @@
 <template>
 <div class="container">
-    
-<p><span>Nombre: </span> {{user.name}}</p>
-<p><span>Email: </span> {{user.email}}</p>
-<p><span>Password: </span> {{user.password}}</p>
-<p><span>Id: </span> {{user.id}}</p>
-<p><span>Creado: </span> {{user.createdAt}}</p>
-<p><span>Actualizado: </span> {{user.updatedAt}}</p>
+    <form class="d-flex text-md-right">        
+  <div>
+    Nombre :
+    <input type="text" ref="name" :value="user.name" :disabled="!isEditing"
+           :class="{view: !isEditing}">
   </div>
+  <div>
+    Email:
+    <input type="text" ref="email" :value="user.email" :disabled="!isEditing"
+           :class="{view: !isEditing}">  
+  </div>
+  <div>
+    Email:
+    <input type="text" ref="email" :value="user.email" :disabled="!isEditing"
+           :class="{view: !isEditing}">  
+  </div>
+  <button @click.prevent="isEditing = !isEditing" v-if="!isEditing">
+    Edit
+  </button>
+  <button @click.prevent="save" v-else-if="isEditing">
+  Save
+  </button>
+  
+  <button v-if="isEditing" @click="isEditing = false">Cancel</button>
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+        <button class="btn btn-outline-success" type="submit" @click.prevent="changePass()">Cambiar password</button>
+        <button class="btn btn-outline-success" type="submit" @click.prevent="editarForm()">Editar</button>
+        <button class="btn btn-outline-success" type="submit" @click.prevent="editar()">Aceptar Cambios</button>
+        <button class="btn btn-outline-success" type="submit" @click.prevent="buscarCodigo()">Buscar por código</button>        
+      </form>
+</div>
 </template>
 
 <script>
 export default {  
   data(){
       return{
+          isEditing: false,
           user: {}
       } 
   },
@@ -25,7 +49,12 @@ export default {
           if(token){
               this.user = JSON.parse(user);                            
           }
-      }
+      },
+      save() {
+      this.user.firstName = this.$refs['first_name'].value;
+      this.user.lastName = this.$refs['last_name'].value;
+      this.isEditing = !this.isEditing;
+    }
   },
   created(){
       this.getUserDetails()
@@ -35,4 +64,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.view {
+  border-color: transparent;
+  background-color: initial;
+  color: initial
+}
 </style>
+
