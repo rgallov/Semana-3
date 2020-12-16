@@ -1,7 +1,6 @@
 <template>
-  <div class="text-center">
-    <form class="form-signin">
-      
+  <div class="text-center container" >
+    <form class="form-signin col-6 col-md-4">      
         <img
           class="mb-4"
           src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
@@ -10,27 +9,23 @@
           height="72"
         />
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input
           v-model="login.email"
           type="email"
-          class="form-control"
+          class="form-control mb-2"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          placeholder="Email address"
         />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
-      
-        <label for="exampleInputPassword1" class="form-label">Password</label>
         <input
           v-model="login.password"
           type="password"
-          class="form-control"
+          class="form-control mb-2"
           id="exampleInputPassword1"
+          placeholder="Password"
         />
-      <button type="submit" class="btn btn-primary" @click.prevent="loginUser">
-        Submit
+      <button type="submit" class="btn btn-primary form-control" @click.prevent="loginUser">
+        Sign in
       </button>
     </form>
 <!-- 
@@ -89,4 +84,48 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 </style>
