@@ -1,41 +1,36 @@
 <template>
 <div class="container mt-2 b">
-    <form class="d-flex text-md-right">        
-  <div class="row">
-    <div class="col">
-      <i class="fas fa-user-tie" style="font-size: 50px;"></i>
-    </div>
-    <div class="col">
-      <div>
-    Nombre :
-    <input type="text" ref="name" :value="user.name" :disabled="!isEditing"
-           :class="{view: !isEditing}">
-  </div>
-    <div>
-    Email:
-    <input type="text" ref="email" :value="user.email" :disabled="!isEditing"
-           :class="{view: !isEditing}">  
-  </div>
-    </div>
-      <div class="col">
-        <button @click.prevent="isEditing = !isEditing" v-if="!isEditing">
-    Edit
-  </button>
-  <button @click.prevent="save" v-else-if="isEditing">
-  Save
-  </button>
-  
-  <button v-if="isEditing" @click="isEditing = false">Cancel</button>
-        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-        <!-- <button class="btn btn-outline-success" type="submit" @click.prevent="changePass()">Cambiar password</button>
-        <button class="btn btn-outline-success" type="submit" @click.prevent="editarForm()">Editar</button>
-        <button class="btn btn-outline-success" type="submit" @click.prevent="editar()">Aceptar Cambios</button>
-        <button class="btn btn-outline-success" type="submit" @click.prevent="buscarCodigo()">Buscar por código</button> -->
-  
+    <h1>Bienvenido</h1>
+    <form class="text-md-right">        
+      <div class="d-flex row row_person pt-2 pb-2 justify-content-between">
+        <div class="col col_person">
+          <i class="fas fa-user-tie font-person"></i>
+        </div>
+        <div class="d-flex flex-col col col_left">
+          <div class="d-flex flex-row align-items-center">
+            <h5 class="mr-2">Nombre:</h5>
+            <input type="text" ref="name" :value="user.name" :disabled="!isEditing"
+                :class="{view: !isEditing}" class="mr-2">
+          </div>          
+          <div class="d-flex flex-row align-items-center">
+            <h5>Email:</h5>
+            <input type="text" ref="email" :value="user.email" :disabled="!isEditing"
+                :class="{view: !isEditing}">  
+          </div>
+        </div>
+        <div class="d-flex flex-row col col_person justify-content-center">
+          <button @click.prevent="isEditing = !isEditing" v-if="!isEditing" class="btn btn-outline-primary form-control">Edit</button>
+          <button @click.prevent="save" v-else-if="isEditing" class="btn btn-outline-primary form-control mr-2">Save</button>
+          <button v-if="isEditing" @click="isEditing = false" class="btn btn-outline-primary form-control">Cancel</button>
+        </div>        
       </div>
-  </div>
-    
-      </form>
+    </form>
+    <footer class="bg-light text-white">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-1 bg-secondary mt-2">
+          <span>© 2020 Copyright</span>
+        </div>
+      </footer>
 </div>
 </template>
 
@@ -75,6 +70,22 @@ export default {
   border-color: transparent;
   background-color: initial;
   color: initial
+}
+.col_person {
+    vertical-align: middle;
+    margin: auto;
+    text-align: center;
+}
+.row_person{
+    border: solid;
+}
+
+.col_left{
+  text-align: left;
+}
+
+.font-person{
+  font-size: 60px;
 }
 </style>
 
